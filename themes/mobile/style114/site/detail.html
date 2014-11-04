@@ -1,0 +1,138 @@
+{template 'header'}
+{php $row = $detail;}
+    <script>
+        window.onload = function ()
+        {
+            var oWin = document.getElementById("win");
+            var oLay = document.getElementById("overlay");
+            var oBtn = document.getElementById("popmenu");
+            var oClose = document.getElementById("close");
+            oBtn.onclick = function ()
+            {
+                oLay.style.display = "block";
+                oWin.style.display = "block"
+            };
+            oLay.onclick = function ()
+            {
+                oLay.style.display = "none";
+                oWin.style.display = "none"
+            }
+        };
+
+    </script>
+    <style>
+        #cate14 .mainmenu li:last-of-type {
+            margin-bottom: 0;
+        }
+        #cate14 .mainmenu {
+            margin: 0 5% 0 0;
+            position: absolute;
+            bottom: auto;
+            top:10;
+            right:0;
+            width:150px;/*可修改菜单宽度*/
+        }
+        #cate14 .mainmenu ul {
+            margin:170px 0 0 0;/*可修改距离顶部的距离*/
+        }
+        #cate14 .mainmenu ul li {
+            float:none; width:100%;
+        }
+        #cate14 .mainmenu li a {
+            background-color: rgba(255, 255, 255, 0.7);/*可修改菜单背景颜色及透明度*/
+            color:#000;/*可修改文字颜色*/
+        }
+        #ui-header{display: none;}
+        .top46{height: 0;}
+        .themeStyle{ background-color:#E83407 !important; }
+
+    </style>
+<body id="news">
+<div id="mcover" onclick="document.getElementById('mcover').style.display='';"><img src="./source/modules/site/template/image/guide.png"></div>
+
+<div class="Listpage">
+    <div class="top46"></div>
+    <div class="page-bizinfo">
+
+        <div class="header" style="position: relative;padding-top: 10px;">
+            <h1 id="activity-name">{$row['title']}</h1>
+            <span id="post-date">作者：{$row['author']}&nbsp;&nbsp;&nbsp;时间：{php echo date("Y-m-d", $row['createtime']);}&nbsp;&nbsp;&nbsp;<a href="weixin://contacts/profile/{$_W['account']['account']}" class="contacts">{if empty($_W['account']['name'])}微饶团队{else}{$_W['account']['name']}{/if}</a></span>
+        </div>
+        <a id="biz-link" class="btn" href="weixin://contacts/profile/{$_W['account']['account']}" target="_blank" data-transition="slide" >
+            <div class="arrow">
+                <div class="icons arrow-r"></div>
+            </div>
+            <div class="logo">
+                <div class="circle"></div>
+                <img id="img" src="./resource/attachment/headimg_{$_W['account']['weid']}.jpg">
+            </div>
+            <div id="nickname">
+                {$_W['account']['name']}</div>
+            <div id="weixinid">微信号:{$_W['account']['account']}</div>
+        </a>
+        <div class="showpic"><img src="{$row['thumb']}" >
+            <div class="text" id="content">
+
+                {$row['content']}
+
+                <div id="insert3" ></div>
+            </div></div>
+
+        <div id="mess_share">
+            <div id="share_1">
+                <span class="btn btn-large" onclick="$('#mcover').show()"><i class="icon-share-alt"></i> 发送给朋友</span>
+            </div>
+            <div id="share_2">
+                <span class="btn btn-large" onclick="$('#mcover').show()"><i class="icon-group"></i> 分享到朋友圈</span>
+            </div>
+            <div class="clr"></div>
+        </div>
+
+
+
+
+    </div>
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1890155"></script>
+    <!-- UY END -->
+    <style>
+        #uyan_frame{margin: 10px;}
+        #uyan_sort_tsina{display:none !important;}
+        #uyan_sort_tqq{display:none !important;}
+        .ujian-uyan{display:none !important;}
+        #uyan_cmty_btn{display:none !important;}
+        #uyan_ottype { width: auto !important;}
+        #uyan_ottype span a:nth-child(1) {display:none !important;}
+        #uyan_ottype span a:nth-child(2) {display:black !important;}
+        #uyan_ottype span a:nth-child(3) {display:none !important;}
+        #uyan_ottype span a:nth-child(4) {display:none !important;}
+        #uyan_ottype span a:nth-child(5) {display:none !important;}
+        #uyan_ottype span a:nth-child(6) {display:none !important;}
+        #uyan_ottype span a:nth-child(7) {display:none !important;}
+        #uyan_ottype span a:nth-child(8) {display:none !important;}
+        #uyan_box{width:300px !important;}
+        #uyan_iframe{width:280px !important;}
+        #uyan_sort div div:nth-child(2) {display:none !important;}
+        #uyan_sort div div:nth-child(3) {display:none !important;}
+        #uyan_sort div div:nth-child(4) {display:none !important;}
+        a[href="http://www.uyan.cc"]{ display: none !important;}
+        #uyan_usp{display:none !important;}
+        #uyan_ssmile div{width:226px !important; height: auto !important;}
+        #uyan_ssmile_list{width:220px !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(1) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(2) {display:black !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(3) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(4) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(5) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(6) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(7) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(8) {display:none !important;}
+        #uyan_stat_btn_r DIV:nth-child(3) {width: auto !important;}
+    </style>
+
+    <a class="footer" href="#news" target="_self"><span class="top">返回顶部</span></a>
+
+    <div style="display:none"> </div>
+</div>
+{template 'footer'}

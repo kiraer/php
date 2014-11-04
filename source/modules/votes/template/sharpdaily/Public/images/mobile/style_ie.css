@@ -1,0 +1,27 @@
+.footer UL.list LI A {
+	PADDING-BOTTOM: 6px; PADDING-LEFT: 6px; PADDING-RIGHT: 6px; PADDING-TOP: 6px
+}
+.header IMG.logo {
+	MARGIN-LEFT: 15px
+}
+.clearfix {
+	FLOAT: left
+}
+.content-index UL.menu CENTER {
+	WIDTH: 320px
+}
+.content-list UL.list LI IMG.preview-img {
+	MARGIN-LEFT: -3px
+}
+.clearfix-border {
+	BORDER-BOTTOM: #bfbfbf 1px solid; BACKGROUND-COLOR: #ffffff
+}
+.content-video UL.list LI P {
+	WIDTH: 150px; DISPLAY: inline; FONT-SIZE: 10px; PADDING-TOP: 4px
+}
+UL.nav-slider LI {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 24.99%; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.content-video UL.list LI {
+	MARGIN: 4px 4px 0px 0px
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+
+        <title>幸运大转盘抽奖</title>
+        <link href="./source/modules/lotery/template/css/activity-style.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body class="activity-lottery-winning" >
+        <div  class="main"  >
+            <script type="text/javascript">
+                var loadingObj = new loading(document.getElementById('loading'),{radius:20,circleLineWidth:8});   
+                loadingObj.show();   
+            </script>
+            <div id="outercont">
+
+                   <!-- <div id="outer"><img src="./source/modules/lotery/template/images/0478d.png"></div>-->
+                   <img src="./source/modules/lotery/template/images/activity-lottery-end2.jpg">
+             
+           
+            </div>
+            <div class="content">
+            	 
+
+                <div class="boxcontent boxyellow"  id="result"  style="display:none;"  >
+                    <div class="box">
+                        <div class="title-orange"><span>幸运转转转!</span></div>
+                        <div class="Detail">
+                            <p>：<span class="red" id="prizetype" ></span></p>
+                            <p>：<span class="red" id="sncode" ></span></p>
+                            <p class="red" id="red">我们已将您的中奖信息记录!</p>
+                             <p>
+                                <input class="pxbtn" name="提 交"  id="save-btnn" type="button" value="继续抽奖">
+                                <input class="pxbtn" name="提 交"  id="save-btnm" type="button" value="修改登记信息">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxcontent boxyellow">
+                    <div class="box">
+                        <div class="title-green" onclick="$('div#zj ul li:gt(10)').toggle();$(this).toggleClass('slide')">抽奖名单：　点击显示全部内容<i></i></div>
+                        <div class="Detail" id="zj">
+                        	<ul>
+							{loop $data $k $v}
+								<li><span>{if empty($v['nickname'])}没有登记!{else}{$v['nickname']}{/if}</span><span>{if !empty($v['award'])}{$v['level']}{else}谢谢参与{/if}</span><?php echo date('m-d H:i:s',$v['createtime']); ?></li>
+							{/loop}	
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxcontent boxyellow">
+                <div class="box">
+                        <div class="title-green" onclick="$('#myaward').toggle();$(this).toggleClass('slide')">我的中奖记录<i></i></div>
+                        <div class="Detail rule" id="myaward" style="display:none">
+                 				<ul>
+                                {loop $myaward $index $row}
+                           <li>{$row['award']}--<span>
+										{if $row['status']=='0'}已领奖{else}{if $row['status'] == 1}未领奖{elseif $row['status'] == 2}抢完了{elseif $row['status'] == 3}谢谢参与{else}没随机{/if}
+									{/if}</span></li>
+				{/loop}
+                        </div>
+                    </div>
+                </div>
+                <div class="boxcontent boxyellow">
+                    <div class="box">
+                        <div class="title-green" onclick="$('#rule').toggle();$(this).toggleClass('slide')">活动规则：　点击显示全部内容<i></i></div>
+                        <div class="Detail rule" id="rule" style="display:none">
+                            {$lotery['rule']}
+                        </div>
+                    </div>
+                </div>
+                <div class="boxcontent boxyellow">
+                    <div class="box">
+                        <div class="title-green" onclick="$('#award').toggle();$(this).toggleClass('slide')">奖品列表：　点击显示全部内容<i></i></div>
+                        <div class="Detail rule" id="award" style="display:none">
+                        {loop $JiangPin $k $v}
+                            <p><span class="org">{$v['level']}：</span>
+                                {$v['description']} <br/> {if $v['id']!=='5'}奖品剩余数量{$v['total']}套{/if}   
+                            </p> 
+                        {/loop}    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./source/modules/lotery/template/js/jquery.js"></script>
+        <script type="text/javascript">
+
+
+            $(function() {
+				$("#zj ul li:gt(10)").css('display','none');
+                window.requestAnimFrame = (function() {
+                    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+                        function(callback) {
+                        window.setTimeout(callback, 1000 / 60)
+                    }
+                })();
+                var totalDeg = 360 * 3 + 0;
+                var steps = [];
+                var lostDeg = [36, 96, 156, 216, 276,336];
+                var prizeDeg = [6, 66, 126,186,246,306];
+                var prize, sncode;
+                var award;
+                var now = 0;
+                var a = 0.01;
+                var outter, inner, timer, running = false;
+                var url="{php echo $this->createMobileUrl('getaward', array('id' => $id, 'from_user' => $_GPC['from_user']))}";
+                function countSteps() {
+                    var t = Math.sqrt(2 * totalDeg / a);
+                    var v = a * t;
+                    for (var i = 0; i < t; i++) {
+                        steps.push((2 * v * i - a * i * i) / 2)
+                    }
+                    steps.push(totalDeg)
+                }
+                function step() {
+                    outter.style.webkitTransform = 'rotate(' + steps[now++] + 'deg)';
+                    outter.style.MozTransform = 'rotate(' + steps[now++] + 'deg)';
+                    if (now < steps.length) {
+                        running = true;
+                        requestAnimFrame(step)
+                    } else {
+                        running = false;
+                        setTimeout(function() {
+                            if (prize != null) {  
+                                $("#prizetype").text(prize);
+                                $("#result").slideToggle(500);
+								$("#outercont").slideDown(500);
+                                $(".content").slideDown(500);
+                                $("body").scrollTop(150);
+                               
+                            } else {
+                                alert("没有中奖，继续努力哦！");
+                                var lotUrl="{php echo $this->createMobileUrl('lottery', array('id' => $id, 'from_user' => $_GPC['from_user']))}";
+                                window.location.href=lotUrl;
+                            }
+                        },
+                        1000)
+                    }
+                }
+                function start(deg) {
+                    deg = deg || lostDeg[parseInt(lostDeg.length * Math.random())];
+                    running = true;
+                    clearInterval(timer);
+                    totalDeg = 360 * 5 + deg;
+                    steps = [];
+                    now = 0;
+                    countSteps();
+                    requestAnimFrame(step)
+                }
+                window.start = start;
+                outter = document.getElementById('outer');
+                inner = document.getElementById('outer');
+                i = 10;
+                $("#inner").click(function() {
+                    if (running) return;
+                    if (prize != null) {
+                        return
+                    }
+        
+                    $.ajax({
+                        url: url,
+                        dataType: "json",
+                        data: {
+                            t: Math.random()
+                        },
+                        beforeSend: function() {
+                            running = true;
+                            timer = setInterval(function() {
+                                i += 1;
+                                outter.style.webkitTransform = 'rotate(' + i + 'deg)';
+                                outter.style.MozTransform = 'rotate(' + i + 'deg)'
+                            },
+                            1) 
+                        },
+                        success: function(data) {
+                            if (data.message.status=="-1") {
+                                alert(data.message.message)
+                                clearInterval(timer);
+                                var lotUrl="{php echo $this->createMobileUrl('lottery',array( 'id' => $id, 'from_user' => $_GPC['from_user']))}";
+                                window.location.href=lotUrl;
+                            }
+                
+                            if (data.message.status==1 || 2) {
+                                prize = data.message.level; 
+                                $("#sncode").text(data.message.award);
+                                award = data.message.message;
+                                if (award=='405') {
+                                    alert("您今天的抽奖机会已经用完啦,欢迎明天再来!");
+                                    var lotUrl="{php echo $this->createMobileUrl('lottery', array('id' => $id, 'from_user' => $_GPC['from_user']))}";
+                                    window.location.href=lotUrl;                                    
+                                }else{
+                                    start(parseInt(data.message.deg));
+                                }
+                            } else {
+                                prize = null;
+                                start(225);
+                            }
+                            running = false;
+                        },
+                        error: function() {
+                            prize = null;
+                            start();
+                            running = false;
+                        },
+                        timeout: 1000
+                    })
+                })
+            });
+            $("#save-btn").bind("click",
+            function() {
+                var regUrl="{php echo $this->createMobileUrl('lottery', array('id' => $id, 'from_user' => $_GPC['from_user']))}";
+                window.location.href=regUrl;
+            });
+
+            $("#save-btnn").bind("click",
+            function() {
+                var lotUrl="{php echo $this->createMobileUrl('lottery', array('id' => $id, 'from_user' => $_GPC['from_user']))}";
+                window.location.href=lotUrl;
+            });
+             $("#save-btnm").bind("click",
+            function() {
+                var lotUrl="{php echo$this->createMobileUrl('register', array('id' => $id, 'from_user' => $_GPC['from_user']))}";
+                window.location.href=lotUrl;
+            });
+        </script>
+
+
+    </body>
+</html>

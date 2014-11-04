@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.51">
+	<application setting="false">
+		<name><![CDATA[转发有礼]]></name>
+		<identifie><![CDATA[forward]]></identifie>
+		<version><![CDATA[1.0]]></version>
+		<type><![CDATA[activity]]></type>
+		<ability><![CDATA[转发有礼营销活动]]></ability>
+		<description><![CDATA[转发有礼营销活动]]></description>
+		<author><![CDATA[小南]]></author>
+		<url><![CDATA[]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="true" />
+	</platform>
+	<bindings>
+   		 <rule>
+        		<entry title="转发排行榜" do="awardlist" />
+    		</rule>
+	</bindings>
+	<install><![CDATA[
+CREATE TABLE `ims_forward_reply` (
+  `id` int(10) NOT NULL auto_increment,
+  `rid` int(10) NOT NULL,
+  `weid` int(10) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `picture` varchar(500) NOT NULL,
+  `rule` text NOT NULL,
+  `end` decimal(11,0) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `description` varchar(2000) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=gbk;
+CREATE TABLE `ims_forward_winner` (
+  `id` int(10) NOT NULL auto_increment,
+  `rid` int(10) NOT NULL,
+  `weid` int(10) NOT NULL,
+  `from_user` varchar(200) NOT NULL,
+  `IPaddress` varchar(100) NOT NULL,
+  `createtime` decimal(11,0) NOT NULL,
+  `tongji` int(10) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=gbk;
+	]]></install>
+	<uninstall><![CDATA[]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

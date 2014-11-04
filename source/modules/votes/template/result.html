@@ -1,0 +1,19 @@
+{template 'common/header'}
+<div class="main">
+<h4><a href="rule.php?act=post&id={$rid}">《返回》</a>  
+	
+<div id="news-list">
+
+		{loop $list $key $v}
+		<div id="news-wrap-item-{$key}" class="alert alert-block alert-new wrap-item">
+        <img src="resource\attachment\{$v['thumb']}" style="height:200px;"/>
+			<div id="news-children-list" style="margin: 10px;">
+		     编号：{$v['id']} <br/> 标题：{$v['title']} <br/> 票数：{$v['vote_num']}  <br/>浏览量：{$v['views']}
+			</div>
+            
+		</div>
+		{/loop}		
+</div>                                        
+{template 'common/footer'}
+  
+	

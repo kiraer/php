@@ -1,0 +1,31 @@
+{template 'header'}
+<link type="text/css" rel="stylesheet" href="themes/mobile/vw011/style.css">
+<div id="footer" class="black_gradient">
+            <a href="javascript:" onclick="window.history.go(-1)" class="back_button black_button">返回</a>
+            <div class="page_title">{$_W['account']['name']}</div>
+            <a href="mobile.php?act=channel&name=index&weid={$_W['weid']}" id="top" class="black_button">首页</a>
+            <div class="clear"></div>
+        </div>
+{php $row = $detail;}
+   	  <div class="content">
+        <h1>{$row['title']}</h1>
+        <span class="subtitle_descr">日期：{php echo date('Y-m-d H:i:s', $row['createtime'])}</span>
+        <img onerror="this.parentNode.removeChild(this)" border="0" class="rounded" src="{$row['thumb']}">
+    	<p class="main_text">
+        {$row['content']}
+        </p>
+        <div class="toogle_wrap">
+            <div class="trigger"><a href="#">精彩图文</a></div>
+            <div class="toggle_container">
+            <ul class="lists">
+			{php include_once IA_ROOT . '/source/modules/site/model.php'}
+  {php $slide = site_article_search('', 'f');}
+  {loop $slide['list'] $v}
+            <li><a href="{php echo create_url('mobile/channel', array('name' => 'detail', 'id' => $v['id'], 'weid' => $_W['weid']))}" class="red">{$v['title']}</a></li>
+            {/loop}
+            </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+		</div>
+{template 'footer'}

@@ -1,0 +1,95 @@
+{template 'header'}
+{php $row = $detail;}
+<link rel="stylesheet" type="text/css" href="{$_W['siteroot']}/themes/mobile/style15/css/common.css" media="all" />
+<style>
+        img{max-width:100%!important;}
+    </style>
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+
+<div class="weimob-page">
+    <div class="weimob-content">
+        <h3>{$row['title']}</h3>
+        <div class="pub_time">作者：{$row['author']}&nbsp;&nbsp;&nbsp;时间：{php echo date("Y-m-d", $row['createtime']);}&nbsp;&nbsp;&nbsp;<a href="weixin://contacts/profile/{$_W['account']['account']}" class="contacts">{if empty($_W['account']['name'])}微饶团队{else}{$_W['account']['name']}{/if}</a></span></div>
+        <a id="biz-link" class="btn" href="weixin://contacts/profile/{$_W['account']['account']}" target="_blank" data-transition="slide" >
+        <div class="head_logo">
+            <div>
+                <span style="background-image:url('./resource/attachment/headimg_{$_W['account']['weid']}.jpg');"></span>
+            </div>
+            <div style="width:100%;">
+                <label>{$_W['account']['name']}</label>
+                <div style="color:#ccc;">微信号:{$_W['account']['account']}</div>
+            </div>
+        </div>
+        <div><img src="{$row['thumb']}" style="width:100%;"/></div>
+        </a>
+        <br/>
+        <article>
+            {$row['content']}
+        </article>
+    </div>
+    <section style="width:95%; margin:0px auto;">
+        <div id="mcover" onclick="document.getElementById('mcover').style.display='';" style="display:none;">
+            <img src="./source/modules/site/template/image/guide.png">
+        </div>
+        <div class="text" id="content">
+            <div id="mess_share">
+                <div id="share_1">
+                    <button class="button2" onclick="document.getElementById('mcover').style.display='block';">
+                        <img src="{$_W['siteroot']}/themes/mobile/rbtwo/images/icon_msg.png">&nbsp;发送给朋友
+                    </button>
+                </div>
+                <div id="share_2">
+                    <button class="button2" onclick="document.getElementById('mcover').style.display='block';">
+                        <img src="{$_W['siteroot']}/themes/mobile/rbtwo/images/icon_timeline.png">&nbsp;分享到朋友圈
+                    </button>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1890155"></script>
+    <!-- UY END -->
+    <style>
+        #uyan_frame{margin: 10px;}
+        #uyan_sort_tsina{display:none !important;}
+        #uyan_sort_tqq{display:none !important;}
+        .ujian-uyan{display:none !important;}
+        #uyan_cmty_btn{display:none !important;}
+        #uyan_ottype { width: auto !important;}
+        #uyan_ottype span a:nth-child(1) {display:none !important;}
+        #uyan_ottype span a:nth-child(2) {display:black !important;}
+        #uyan_ottype span a:nth-child(3) {display:none !important;}
+        #uyan_ottype span a:nth-child(4) {display:none !important;}
+        #uyan_ottype span a:nth-child(5) {display:none !important;}
+        #uyan_ottype span a:nth-child(6) {display:none !important;}
+        #uyan_ottype span a:nth-child(7) {display:none !important;}
+        #uyan_ottype span a:nth-child(8) {display:none !important;}
+        #uyan_box{width:300px !important;}
+        #uyan_iframe{width:280px !important;}
+        #uyan_sort div div:nth-child(2) {display:none !important;}
+        #uyan_sort div div:nth-child(3) {display:none !important;}
+        #uyan_sort div div:nth-child(4) {display:none !important;}
+        a[href="http://www.uyan.cc"]{ display: none !important;}
+        #uyan_usp{display:none !important;}
+        #uyan_ssmile div{width:226px !important; height: auto !important;}
+        #uyan_ssmile_list{width:220px !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(1) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(2) {display:black !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(3) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(4) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(5) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(6) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(7) {display:none !important;}
+        #uyan_stat_btn_r DIV span a:nth-child(8) {display:none !important;}
+        #uyan_stat_btn_r DIV:nth-child(3) {width: auto !important;}
+    </style>
+
+    <div style="padding-bottom:0!important;">
+        <a href="javascript:window.scrollTo(0,0);" style="font-size:12px;margin:5px auto;display:block;color:#fff;text-align:center;line-height:35px;background:#333;margin-bottom:-10px;">返回顶部</a>
+    </div>
+
+</div>

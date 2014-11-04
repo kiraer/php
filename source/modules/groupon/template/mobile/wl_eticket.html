@@ -1,0 +1,52 @@
+{template wl_header} 
+<div>
+    <div id="container" class="container animate">
+        <header>
+            <div class="nav_coupon">
+                <ul class="box">
+                    <li><a href="{php echo $this->createMobileUrl('wleticket',array('type'=>'unused'));}" {if $_GPC['type']=='unused'||empty($_GPC['type'])}class="on"{/if}>未使用</a></li>
+                    <li><a href="{php echo $this->createMobileUrl('wleticket',array('type'=>'used'));}" {if $_GPC['type']=='used'}class="on"{/if}>已使用</a></li>
+                    <li><a href="{php echo $this->createMobileUrl('wleticket',array('type'=>'expired'));}" {if $_GPC['type']=='expired'}class="on"{/if}>已过期</a></li>
+                </ul>
+            </div>
+        </header>
+		 <div class="body">
+				<ul class="list_coupon">
+				{loop $list $row}
+				<li>
+					<a href="{php echo $this->createMobileUrl('wleshow', array('tid' => $row['tid'],'id'=>$row['id']));}" class="tbox">					{if $_GPC['type']=='unused'||empty($_GPC['type'])}					<div>													<input type="button" class="btnsj" onclick="show_modal('#custom_info',{$row['tid']},'{$row['secretsn']}');" value="商家验证"/>																									</div>						{/if}
+						<div>
+							<span>
+								<div>
+									<label>
+									                                      
+										{$row['tip1']}
+									</label>
+								</div>
+							</span>
+						</div>
+						<div>
+							<h3>{$row['title']}</h3>
+							<p class="sn">SN码：{$row['secretsn']}</p>
+							<p>{$row['tip2']}</p>																					
+						</div>						
+					</a>
+				</li>
+				{/loop}
+				</ul>
+		</div>
+       
+ {template wl_footer} 
+    </div>
+</div><div class="modal fade"  style="width:300px;"  id="custom_info" data-tabindex="-1">      <div class="modal-header">         <div class="mobile-hd">请输入商家密码进行验证</div>      </div>      <div class="modal-body">		<table class="form-table">			<tr>				<th>商家密码:</th>				 <td><input type="password" id="password"  class="span6"   value="" /></td>			     <input type="hidden" id="sn"  class="span6"   value="" />				 <input type="hidden" id="tid"  class="span6"   value="" />			</tr>			</tr>				</table>		 <div class="modal-footer">	 		<input type="button" name="submit" onclick="sjyz();" class="btn btn-success submit" data-dismiss="modal"  value="确定"/>       <a href="#" class="btn" data-dismiss="modal">取消</a>      </div>	</div>
+<script>
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+WeixinJSBridge.call('hideOptionMenu');
+});function show_modal(obj,tid,sn){     event.preventDefault();	 $('#tid').val(tid);	 $('#sn').val(sn);	$(obj).modal().css({	    'margin-left': function () {	        return -($(this).width() / 2);	    }	});}function sjyz(obj){    var tid=$('#tid').val();	var sn=$('#sn').val();	var password=$('#password').val();    $.ajax("{php echo $this->createMobileUrl('wlverification',array('subcp'=>'wapused'))}", {                    type: "post", dataType: "json",                    data: { "weid": "{$_W['weid']}", "sn":sn, "goods":tid, "password":password}                }).done(function (d) {				 if (d.errno == 0) {                alert("使用成功");				window.location.reload();				}				alert(d.error);                         }).fail(function(d){			    alert("网络异常");			  });		}
+</script>
+
+</body>
+
+</html>
+
+

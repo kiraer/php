@@ -1,0 +1,24 @@
+{template 'head'}
+<!--        main Content-->
+<div class="ContentWrapper" id="HomeContentWrapper">
+    <span class="BigComments"></span>
+    <h2>{$detail['title']}</h2>
+    <p class="BlogInfo">CONTENT</p>
+    {$detail['content']}
+    <!--Latest News Section-->
+    <ul id="LatestNewsItems">
+        {data func="site_article" cid=$cid return="true" iscommend="true" assign="result"}
+        {loop $result['list'] $row}
+        <li>
+            <span class="Comments"></span>
+            <h4><a href="{$row[url]}">[推荐]{$row['title']}</a></h4>
+            <p>{php echo mb_strcut($row['description'],0,80,'utf-8');}…</p>
+        </li>
+        {/loop}
+    </ul>
+</div>
+<!--            footer section-->
+{if empty($footer_off)}<div id="footer">{if $_W['account']['siteinfo']['footer']}{$_W['account']['siteinfo']['footer']}{else}&copy;{if empty($_W['account']['name'])}微动力团队{else}{$_W['account']['name']}{/if}&nbsp;&nbsp;{/if}{$_W['setting']['copyright']['statcode']}</div>{/if}
+{template 'footer'}
+</body>
+</html>

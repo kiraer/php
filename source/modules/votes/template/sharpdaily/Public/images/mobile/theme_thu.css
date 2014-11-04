@@ -1,0 +1,33 @@
+.sprite-sharp {
+	BACKGROUND-IMAGE: url(thursday_sprite.png)
+}
+.header {
+	BACKGROUND-COLOR: #0066CC
+}
+.vmenu {
+	BACKGROUND-COLOR: #0066CC
+}
+.content-list {
+	BACKGROUND: #0066cc
+}
+.content-article {
+	BACKGROUND: #b649b2
+}
+.content-video {
+	BORDER-LEFT: #b649b2 2px solid; BORDER-TOP: #b649b2 2px solid
+}
+.actContent {
+	BACKGROUND-COLOR: #b649b2
+}
+.headerBorder {
+	BACKGROUND-IMAGE: url(thu.top_bg.png); height:12px;
+}
+.hightlight-text {
+	COLOR: black
+}
+.hightlight-thumb {
+	BORDER-BOTTOM-COLOR: #686d71; BORDER-TOP-COLOR: #686d71; BORDER-RIGHT-COLOR: #686d71; BORDER-LEFT-COLOR: #686d71
+}
+.head-info DIV {
+	COLOR: white
+}

@@ -1,0 +1,33 @@
+.sprite-sharp {
+	BACKGROUND-IMAGE: url(friday_sprite.png)
+}
+.header {
+	BACKGROUND-COLOR: #014ca2
+}
+.vmenu {
+	BACKGROUND-COLOR: #014ca2
+}
+.content-list {
+	BACKGROUND: #014ca2
+}
+.content-article {
+	BACKGROUND: #014ca2
+}
+.content-video {
+	BORDER-LEFT: #014ca2 2px solid; BORDER-TOP: #014ca2 2px solid
+}
+.actContent {
+	BACKGROUND-COLOR: #014ca2
+}
+.headerBorder {
+	BACKGROUND-IMAGE: url(fri.top_bg.png)
+}
+.hightlight-text {
+	COLOR: black
+}
+.hightlight-thumb {
+	BORDER-BOTTOM-COLOR: #686d71; BORDER-TOP-COLOR: #686d71; BORDER-RIGHT-COLOR: #686d71; BORDER-LEFT-COLOR: #686d71
+}
+.head-info DIV {
+	COLOR: white
+}

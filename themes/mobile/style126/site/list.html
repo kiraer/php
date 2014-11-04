@@ -1,0 +1,30 @@
+{template 'head'}
+<!--        main Content-->
+<div class="ContentWrapper" id="GalleryContentWrapper">
+    <!--            gallery Posts content-->
+    <ul id="GalleryPosts">
+        {data func="site_article" cid=$cid return="true" assign="result"}
+        {loop $result['list'] $row}
+        <li>
+            <div class="OneTapeLeft">
+                <img src="./themes/mobile/style126/templets/m2013/img/tapeHorizontal.png" alt="Horizontal Tape" />
+            </div>
+            <a href="{$row[url]}" class="TouchGallery" title="{$row['title']}">
+                <img class="MainGalleryImage" src="{$_W['attachurl']}{$row['thumb']}" alt="{$row['title']}" title="{$row['title']}" />
+            </a>
+            <h2><a href="{$row[url]}">{$row['title']}</a></h2>
+            <h3>CLASSIC</h3>
+            <p>{$row['description']}</p>
+            <a class="readMore" href="{$row[url]}">MORE+</a>
+        </li>
+        {/loop}
+    </ul>
+    <div id="Pagination">
+        {$result['pager']}
+    </div>
+</div>
+<!--            footer section-->
+{if empty($footer_off)}<div id="footer">{if $_W['account']['siteinfo']['footer']}{$_W['account']['siteinfo']['footer']}{else}&copy;{if empty($_W['account']['name'])}微动力团队{else}{$_W['account']['name']}{/if}&nbsp;&nbsp;{/if}{$_W['setting']['copyright']['statcode']}</div>{/if}
+{template 'footer'}
+</body>
+</html>

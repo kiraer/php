@@ -1,0 +1,68 @@
+{template 'header'}
+{php $result = site_article_search($cid);}
+{php include model('site');}
+{php $navs = mobile_nav(1);}
+        
+  
+  
+
+<a name="top"></a>
+<div id="main_container">
+
+    	<div class="pages_content">
+        	<h3>{$title}</h3>
+            <a href="" class="home_bt">home</a>
+            <div class="center_content">
+    {loop $result['list'] $row}
+                <div class="post">
+                        <div class="post_details">
+                        <h2><a href="{php echo $this->createMobileUrl('detail', array('name' => 'detail', 'id' => $row['id'], 'weid' => $_W['weid']))}">{$row['title']}</a></h2>
+                            <div class="entry">
+                            <p>{php echo date('Y/m/d', $row['createtime'])}</p>
+                            </div>
+                        </div>
+                </div>
+      {/loop}
+			</div>
+            {$result['pager']}
+        </div>
+        
+        
+        <div class="top_bt"><a href="#top"><img src="{$_W['siteroot']}themes/mobile/style31/images/top.gif" alt="" title="" border="0" /></a></div>
+        <div class="footer">
+        {if empty($footer_off)}<div id="footer">&copy;{if empty($_W['account']['name'])}微动力{else}Copyright 2014. {$_W['account']['name']}{/if}</div>{/if}
+        </div>
+    
+</div>
+
+<script language="JavaScript1.2">
+
+
+var speed, currentpos=curpos1=0,alt=1,curpos2=-1
+
+function initialize(){
+if (window.parent.scrollspeed!=0){
+speed=window.parent.scrollspeed
+scrollwindow()
+}
+}
+
+function scrollwindow(){
+temp=(document.all)? document.body.scrollTop : window.pageYOffset
+alt=(alt==0)? 1 : 0
+if (alt==0)
+curpos1=temp
+else
+curpos2=temp
+
+window.scrollBy(0,speed)
+}
+
+setInterval("initialize()",10)
+
+</script>
+</body>
+</html>
+
+
+  

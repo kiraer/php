@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>{if $title}{$title}{else}{if !empty($_W['account']['name'])}{$_W['account']['name']}{/if}{/if}</title>
+<script type="text/javascript" src="themes/mobile/style122/js/jquery.min.js"></script>
+<script type="text/javascript" src="themes/mobile/style122/js/script.js"></script>
+<link rel="stylesheet" href="themes/mobile/style122/css/wtx05.css" type="text/css" />
+<link rel="stylesheet" href="themes/mobile/style122/css/base.css" type="text/css" />
+</head>
+<body>
+{php $row = $detail;}
+  <div class="wrap bc" style="height:auto;">
+    <div class="title tc pr top">
+	  <span class="back-btn"></span><span style="color: white; font-size: 14pt;">{$_W['account']['name']}</span>
+	  <div class="nav-btn">
+	    <ul class="pa">
+			<li><a href="{php echo create_url('mobile/channel', array('name' => 'index', 'weid' => $_W['weid']))}">微站主页</a></li>
+		{php 
+$cussql='select * from '.tablename('site_nav').' where  weid = '.$_W['weid'].' AND  status = 1 ORDER BY displayorder DESC';}
+{php $nav_list = pdo_fetchall($cussql); }
+	    {loop $nav_list $nav} 
+			<li><a href="{$nav['url']}">{$nav['name']}</a></li>
+		{/loop}
+	    </ul>
+	  </div>
+	</div>
+	<div class="content">
+	  <h2>{$row['title']}</h2>
+	  <h6>{php echo date('Y-m-d H:i:s', $row['createtime'])}</h6>
+	  <p class="article mt10">
+	    {$row['content']}
+	  </p>
+	</div>
+	<div class="footer mt10 tc">
+	  <p class="support">技术支持：{$_W['account']['name']}</p>
+	  <p class="copyright">Copyright &copy; 2014.Company name All rights reserved.</p>
+	</div>
+  </div> 
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>{if $title}{$title}{else}{if !empty($_W['account']['name'])}{$_W['account']['name']}{/if}{/if}</title>
+<script type="text/javascript" src="themes/mobile/style122/js/jquery.min.js"></script>
+<script type="text/javascript" src="themes/mobile/style122/js/script.js"></script>
+<link rel="stylesheet" href="themes/mobile/style122/css/wtx05.css" type="text/css" />
+<link rel="stylesheet" href="themes/mobile/style122/css/base.css" type="text/css" />
+</head>
+<body>
+{php $result = site_article_search($cid);}
+  <div class="wrap bc" style="height:auto;">
+    <div class="title tc pr top">
+	  <span class="back-btn"></span><span style="color: white; font-size: 14pt;">{$_W['account']['name']}</span>
+	  <div class="nav-btn">
+	    <ul class="pa">
+			<li><a href="{php echo create_url('mobile/channel', array('name' => 'index', 'weid' => $_W['weid']))}">微站主页</a></li>
+		{php 
+$cussql='select * from '.tablename('site_nav').' where  weid = '.$_W['weid'].' AND  status = 1 ORDER BY displayorder DESC';}
+{php $nav_list = pdo_fetchall($cussql); }
+	    {loop $nav_list $nav} 
+			<li><a href="{$nav['url']}">{$nav['name']}</a></li>
+		{/loop}
+	    </ul>
+	  </div>
+	</div>
+	<div class="list news">
+	  <ul>
+		{loop $result['list'] $row}
+			<li>
+			  <a href="{php echo $this->createMobileUrl('detail', array('name' => 'detail', 'id' => $row['id'], 'weid' => $_W['weid']))}"><img src="{$_W['attachurl']}{$row['thumb']}" /></a>
+			  <h4><a href="{php echo $this->createMobileUrl('detail', array('name' => 'detail', 'id' => $row['id'], 'weid' => $_W['weid']))}">{$row['title']}</a></h4>
+			  <p>
+				{$row['description']}
+			  </p>
+			</li>
+		{/loop}
+	  </ul>
+	  {$result['pager']}
+	</div>
+	<div class="footer mt10 tc">
+	  <p class="support">技术支持：{$_W['account']['name']}</p>
+	  <p class="copyright">Copyright &copy; 2014.Company name All rights reserved.</p>
+	</div>
+  </div> 
+</div>
+</body>
+</html>

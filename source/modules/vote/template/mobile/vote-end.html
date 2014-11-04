@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>投票结束</title>
+<link type="text/css" rel="stylesheet" href="./source/modules/vote/style/vote.css" />
+</head>
+<body>
+<div class="wrapper" style="margin-top:-8px;">
+	<img class="bg" src="./source/modules/vote/style/images/bg.jpg">
+	<div class="top fn-clear">
+		 
+	<div class="title-cont">
+                    <p class="title">{$reply['title']}</p>
+                    <p class="timeout" style='padding-left:15px;'><img class="clock" src="./source/modules/vote/style/images/clock.png"><span class="text">{$limits}</span></p>
+                    <p>&nbsp;</p>
+                </div>
+	</div>
+	   {if !empty($reply['thumb'])}
+            <div class="cover">
+                <img class="line" src="./source/modules/vote/style/images/ctline.jpg">
+                <img class="cimg" src="{php echo img_url($reply['thumb'])}">
+                <img class="line" src="./source/modules/vote/style/images/cbline.jpg">
+            </div>
+            {/if}
+	<!--<div class="summary">{$reply['description']}</div>-->
+	<div class="summary">{$reply['description']}</div>
+            <div class="tip-cont">
+                <img class="icon" src="./source/modules/vote/style/images/tip_icon.png">
+                投票后才能看到结果 | {$selects} {if empty($reply['votetimes'])}<br/> 您还可以投票 {$reply['votetimes']} 次{/if}
+            </div>
+	<div class="option-cont">
+    
+             {loop $list $row}
+		<div class="option fn-clear option-statis" data-value="0">
+                     {if !empty($row['thumb']) && $reply['isimg']==1}
+                    <div><image src="{php echo img_url($row['thumb'])}" style="width:95%;margin:10px;" /></div>
+                    {/if}
+				<div>
+			<div style="float:left">{$row['title']}</div>
+			<div style="float:right">{$row['vote_num']}票</div>
+			</div>
+			<div class="progress"><div data-per="{$row['percent']}" class="bar bar0" style="width: {$row['percent']}%;"></div></div><span class="per" style="margin-left:15px;">{$row['num']}({$row['percent']}%)</span>
+		</div>
+		<img class="sep" src="./source/modules/vote/style/images/option_sep.jpg">
+                {/loop}
+		 
+	</div>
+<!--	<div class="vote-cont">
+		<div style="height: 10px;"></div>
+		<img class="vote-btn" id="submit" src="./source/modules/vote/style/images/vote.png">
+		<div style="height: 10px;"></div>
+	</div>-->
+ 	<p class="page-url">
+	</p>
+</div>
+</body>
+</html>

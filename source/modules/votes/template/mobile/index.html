@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBliC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<head>
+<title>{$title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta http-equiv="cache-control" content="no-cache" />
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Expires" CONTENT="-1">
+<meta name=GENERaTOR content="MSHTML 8.00.6001.19120">
+<link rel=apple-touch-icon href="./source/modules/votes/template/sharpdaily/images/mobile/appIcon.jpg">
+<link rel=icon type=image/x-icon href="./source/modules/votes/template/sharpdaily/images/mobile/16x16icon.ico">
+<link rel="shortcut icon" type=image/x-icon href="./source/modules/votes/template/sharpdaily/images/mobile/16x16icon.ico">
+<link rel=stylesheet type=text/css href="./source/modules/votes/template/sharpdaily/images/mobile/style.css">
+<!--[if IE]><link rel=stylesheet type=text/css href="./source/modules/votes/template/sharpdaily/images/mobile/style_ie.css"><![endif]-->
+<script type=text/javascript src="./source/modules/votes/template/sharpdaily/images/mobile/Init.js"></script>
+<link rel=stylesheet type=text/css href="./source/modules/votes/template/sharpdaily/images/mobile/style_sharp.css">
+<link rel=stylesheet type=text/css href="./source/modules/votes/template/sharpdaily/images/mobile/theme_thu.css">
+<script src="./source/modules/votes/template/sharpdaily/images/mobile/jquery-1.6.2.min.js"></script>
+<link href="./source/modules/votes/template/sharpdaily/images/mobile/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+<script src="./source/modules/votes/template/sharpdaily/images/mobile/jquery.jplayer.js"></script>
+<script type=text/javascript src="./source/modules/votes/template/sharpdaily/images/mobile/script_sharp.js"></script>
+<!--ipt type="text/javascript" src="http://partner.googleadservices.com/gampad/google_service.js"></scri-->
+<script type="text/javascript">
+  GS_googleAddAdSenseService("ca-pub-8741958826494361");
+  GS_googleEnableAllServices();
+</script>
+<script type="text/javascript"> 
+    if (navigator.userAgent.indexOf('iPhone') != -1) 
+    { 
+        addEventListener("load", function() 
+        { 
+        setTimeout(hideURLbar, 0); 
+        }, false); 
+    } 
+    function hideURLbar() 
+    { 
+        window.scrollTo(0, 1); 
+    } 
+</script>
+</head>
+<body>
+<DIV class="headerBorder" style="background: url(./source/modules/votes/template/sharpdaily/images/mobile/top.png) 
+#0066CC;MARGIN: 0px; WIDTH: 100%; BACKGROUND-REPEAT: repeat-x; HEIGHT: 11px;"><img src="./source/modules/votes/template/sharpdaily/images/mobile/sp.gif"></DIV>
+<div class=header> <a href="actionnews"><!-- 
+    	<div class="sprite-sharp sprite-1home"></div>
+        --> 
+  </a></div>
+<script type="text/javascript">
+        function chgSection(secid,startrec){
+                $("#ArticleList_"+secid).show();
+                $("ul.list:not(#ArticleList_"+secid+")").hide();			
+                $(".sechl:not(#secbtn_"+secid+"_b)").hide();
+                $(".sec_nohl:not(#secbtn_"+secid+")").show();
+                $("#secbtn_"+secid).hide();
+                $("#secbtn_"+secid+"_b").show();
+            } 
+    </script>
+<div class="content-list clearfix">
+  <div class=vmenu>
+    <ul>
+      <li id="secbtn_2959717" class="sec_nohl" style="display:none">
+        <div class="sprite-sharp sprite-90hknews_btn" onclick="chgSection(2959717,0)"></div>
+      </li>
+      <li id="secbtn_2959717_b" class="sechl" style="">
+        <div class="sprite-sharp sprite-90hknews_btn_sel"></div>
+      </li>
+      <li id="secbtn_2959718" class="sec_nohl" style="">
+        <div class="sprite-sharp sprite-91entnews_btn" onclick="chgSection(2959718,0)"></div>
+      </li>
+      <li id="secbtn_2959718_b" class="sechl" style="display:none">
+        <div class="sprite-sharp sprite-91entnews_btn_sel"></div>
+      </li>
+      <li id="secbtn_33785476" class="sec_nohl" style="">
+        <div class="sprite-sharp sprite-93intlnews_btn" onclick="chgSection(33785476,0)"></div>
+      </li>
+      <li id="secbtn_33785476_b" class="sechl" style="display:none">
+        <div class="sprite-sharp sprite-93intlnews_btn_sel"></div>
+      </li>
+      <li id="secbtn_33651385" class="sec_nohl" style="">
+        <div class="sprite-sharp sprite-92sharpnews_btn" onclick="chgSection(33651385,0)"></div>
+      </li>
+      <li id="secbtn_33651385_b" class="sechl" style="display:none">
+        <div class="sprite-sharp sprite-92sharpnews_btn_sel"></div>
+      </li>
+    </ul>
+  </div>
+  <!-- 表列新聞 -->
+  <div class=content>
+    <ul class="list" id="ArticleList_2959717" style="float:none;">
+      <iframe id="main" width="100%" scrolling="yes" height="800px" frameborder="0" src="{php echo $this->createMobileUrl('list',array('id'=>$rid))}"></iframe>
+    </ul>
+    <ul class="list" id="ArticleList_2959718" style="float:none;display:none;">
+    	<iframe id="main" width="100%" scrolling="yes" height="800px" frameborder="0" src="{php echo $this->createMobileUrl('single')}" ></iframe>
+    </ul>
+    <ul class="list" id="ArticleList_33785476" style="float:none;display:none;">
+      <iframe id="main" width="100%" scrolling="yes" height="800px" frameborder="0" src="{php echo $this->createMobileUrl('reg',array('rid'=>$rid))}" ></iframe>
+    </ul>
+    <ul class="list" id="ArticleList_33651385" style="float:none;display:none;">
+      <iframe id="main" width="100%" scrolling="yes" height="800px" frameborder="0" src="{php echo $this->createMobileUrl('ad',array('id'=>$rid))}" ></iframe>
+    </ul>
+    <ul class="list" id="ArticleList_33651386" style="float:none;display:none;">
+    </ul>
+    <ul class="list" id="ArticleList_33651387" style="float:none;display:none;">
+    </ul>
+    <ul class="list" id="ArticleList_2960226" style="float:none;display:none;">
+    </ul>
+  </div>
+</div>
+<!--ipt type="text/javascript">
+    chgSection(2959717,0);    var _gaq = _gaq || [];
+    _gaq.push(['_setaccount', 'Ua-2067247-44']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </scri--> 
+<script language="javascript" type="text/javascript" src="./source/modules/votes/template/sharpdaily/images/mobile/nav-slider.v1.0.0.js"></script> 
+<img id="PVVideo" width="0" height="0" src="">
+</body>
+</HTML>

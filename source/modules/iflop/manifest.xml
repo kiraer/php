@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.51">
+    <application setting="false">
+        <name><![CDATA[翻牌抽奖]]></name>
+        <identifie><![CDATA[iflop]]></identifie>
+        <version><![CDATA[1.0]]></version>
+        <type><![CDATA[activity]]></type>
+        <ability><![CDATA[翻牌抽奖]]></ability>
+        <description><![CDATA[翻牌抽奖]]></description>
+        <author><![CDATA[迷失卍国度]]></author>
+        <url><![CDATA[]]></url>
+    </application>
+    <platform>
+        <handles>
+            <message type="text" />
+        </handles>
+        <rule embed="true" />
+    </platform>
+    <bindings>
+    </bindings>
+    <install><![CDATA[
+    CREATE TABLE `ims_iflop_reply` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `rid` int(10) unsigned NOT NULL COMMENT '规则ID',
+    `picture` varchar(200) NOT NULL COMMENT '活动图片',
+    `title` varchar(255) NOT NULL COMMENT '标题',
+    `description` varchar(1000) NOT NULL COMMENT '活动描述',
+    `rule` text NOT NULL COMMENT '规则',
+    `dateline` int(10) unsigned NOT NULL COMMENT '发布时间',
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+    ]]></install>
+    <uninstall><![CDATA[]]></uninstall>
+    <upgrade><![CDATA[]]></upgrade>
+</manifest>

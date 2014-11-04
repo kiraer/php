@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.51">
+	<application setting="false">
+		<name><![CDATA[大转盘拥抱版]]></name>
+		<identifie><![CDATA[lotery]]></identifie>
+		<version><![CDATA[1.0]]></version>
+		<type><![CDATA[activity]]></type>
+		<ability><![CDATA[大转盘抽奖模块]]></ability>
+		<description><![CDATA[大转盘抽奖开启，中奖名单查看]]></description>
+		<author><![CDATA[拥抱]]></author>
+		<url><![CDATA[]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="true" />
+	</platform>
+	<bindings>
+		<menu>
+			<entry title="中奖名单管理" do="manage" state="" direct="false" />
+		</menu>
+	</bindings>
+	<install><![CDATA[
+CREATE TABLE `ims_lotery_award` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `rid` int(10) unsigned NOT NULL COMMENT '规则ID',
+  `level` varchar(50) DEFAULT NULL COMMENT '奖品等级',
+  `title` varchar(50) NOT NULL COMMENT '奖品名称',
+  `total` int(11) NOT NULL COMMENT '数量',
+  `probalilty` varchar(5) NOT NULL COMMENT '概率单位%',
+  `deg` int(5) NOT NULL COMMENT '角度',
+  `description` varchar(100) NOT NULL DEFAULT '' COMMENT '描述',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ims_lotery_reply` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `rid` int(10) unsigned NOT NULL COMMENT '规则ID',
+  `title` varchar(255) NOT NULL,
+  `picture` varchar(100) NOT NULL COMMENT '活动图片',
+  `zppic` varchar(100) NOT NULL COMMENT '转盘图片',
+  `description` varchar(100) NOT NULL COMMENT '活动描述',
+  `rule` varchar(1000) NOT NULL COMMENT '规则',
+  `maxlottery` tinyint(3) unsigned NOT NULL COMMENT '最大抽奖数',
+  `status` tinyint unsigned not null default 1 comment '开启/关闭',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ims_lotery_winner` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `rid` int(10) unsigned NOT NULL COMMENT '规则ID',
+  `aid` int(10) unsigned NOT NULL COMMENT '奖品ID',
+  `award` varchar(100) NOT NULL DEFAULT '' COMMENT '奖品名称',
+  `description` varchar(500) NOT NULL DEFAULT '' COMMENT '中奖信息描述',
+  `from_user` varchar(50) NOT NULL COMMENT '用户唯一身份ID',
+  `status` tinyint(1) NOT NULL COMMENT '0已领奖，1未领奖，2抢完了,其他谢谢参与!',
+  `createtime` int(10) unsigned NOT NULL COMMENT '获奖日期',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+	]]></install>
+	<uninstall><![CDATA[
+	drop table ims_lotery_reply;
+	drop table ims_lotery_award;
+	drop table ims_lotery_winner;
+	]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

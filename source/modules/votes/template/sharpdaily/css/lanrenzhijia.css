@@ -1,0 +1,161 @@
+/* 代码整理：懒人之家 lanrenzhijia.com */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body {
+	margin:20px;
+	color:#444;
+	font-family: Arial;
+	font-size:12px;
+}
+.info {
+	clear:both;
+	padding-top:30px;
+	line-height:1.6;
+}
+h2 {
+	color:#426;
+	margin-bottom:10px;
+	padding-bottom:10px;
+	font-size:16px;
+	border-bottom:dashed 1px #aaa;
+}
+h3 {
+	background-color:#fff;
+	color:#669;
+	padding:10px;
+	margin:10px 0 15px 0;
+	font-size:11px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border:solid 1px #ddd;
+	font-weight:normal;
+}
+input {
+	outline:none;
+}
+.form {
+	float: left;
+	width: 90%;
+	background-color: #f0f0f0;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 20px;
+	margin: 0 10px 0 0;
+}
+.form .form-row {
+	width:100%;
+	margin-bottom: 10px;
+	float:left;
+}
+.form .label {
+	float: left;
+	width: 50px;
+	margin: 6px 0 0 5px;
+}
+.form .input-container {
+	float: left;
+	width: 150px;
+	text-align: right;
+}
+.form .input {
+	width: 150px;
+	height: 18px;
+	border: 2px solid #c4c4c4;
+}
+.form .textarea {
+	width: 150px;
+	height: 120px;
+	border: 2px solid #c4c4c4;
+	font-family: Tahoma;
+	font-size: 11px;
+}
+.form .error-input, .form .error-both .input, .form .error-same .input {
+	background-color:#FFEFEF;
+	border-color:#BB6666;
+	color:#660000;
+}
+.form .error-div {
+	float:right;
+	margin:7px 10px 0 0;
+	color:#935;
+	font-size:10px;
+}
+.form .error-div-alternative {
+	display:none;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	width:800px;
+	top:0;
+	left:50%;
+	position:absolute;
+	z-index:1000;
+	margin-left:-400px;
+	text-align:center;
+	font-size:16px;
+	color:#934;
+	padding:20px 0 20px 0;
+	background-color:#fee;
+	border:solid 2px #d36;
+	border-top-width:0;
+}
+.form .error-same, .form .error-both {
+	color:#fff;
+	background-color:#b66;
+	-moz-border-radius:3px;
+}
+.form .sendBtn {
+	width:75px;
+	height:24px;
+	text-align:center;
+	background:url(../images/submit-btn-bg.gif) repeat-x 0 0;
+	color:#5f5f5f;
+	border:1px solid #aaa;
+	float:right;
+	display:block;
+	cursor:pointer;
+	font-weight:bold;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+}
+.form .sendBtn:hover {
+	background:url(../images/submit-btn-bg-hover.gif) repeat-x 0 0;
+	color:#ffffff;
+	border:1px solid #5f5f5f;
+}

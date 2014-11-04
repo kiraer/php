@@ -1,0 +1,55 @@
+{template 'header'}
+{php $result = site_article_search($cid);}  
+{php include model('site');}
+{php $navs = mobile_nav(1);}
+<div id="preloader">
+	<div id="status">
+    	<p class="center-text">
+			Loading the content...
+        </p>
+    </div>
+</div>
+
+<div class="header">
+	<a href="#" class="show-navigation"></a>
+    <a href="#" class="hide-navigation"></a>
+    <img src="{$_W['styles']['indexlogo']}" class="page-logo" alt="img">
+</div>
+
+<div class="navigation">
+	<div class="navigation-wrapper">
+        {loop $navs $nav}            
+        <div class="nav-item">
+            <a href="{$nav['url']}"  style="{if !empty($nav['icon'])}background-image:url({$_W['attachurl']}{$nav['icon']});{else}background-image:url({$_W['siteroot']}/themes/mobile/style18/images/misc/type.png); {/if}" >{$nav['name']}<em class="unselected-item"></em></a>
+        </div>
+      	{/loop}
+    </div>
+</div>
+
+<div class="page-header-clear"></div>
+
+<div class="content">
+	<div class="decoration"></div>
+    <div class="container no-bottom">
+	{loop $result['list'] $row}
+        <div>
+            <a href="{php echo $this->createMobileUrl('detail', array('name' => 'detail', 'id' => $row['id'], 'weid' => $_W['weid']))}">
+                {if $row['thumb']}
+                
+                <img src="{$_W['attachurl']}{$row['thumb']}">
+                {/if}
+            </a>
+            <h4><a href="{php echo $this->createMobileUrl('detail', array('name' => 'detail', 'id' => $row['id'], 'weid' => $_W['weid']))}">{$row['title']}</a></h4>
+            <p>{php echo date('Y-m-d H:i:s', $row['createtime'])}</p>
+        </div>
+        <div class="decoration"></div>
+    {/loop}
+    </div>
+{$result['pager']}
+</div>
+                        
+
+{template 'footer'}
+
+</body>
+</html>

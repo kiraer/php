@@ -1,0 +1,111 @@
+{template 'common/header'}
+{if $operation == 'post'}
+<div class="main">
+	<form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="{$item['id']}" />
+		<h4>参赛者信息</h4>
+		<table class="tb">
+        	<tr>
+				<th><label for="">参赛者粉丝编码</label></th>
+				<td>
+					<input type="text" name="from_user" class="span3" value="{php echo $item['from_user']?$item['from_user']:rand(10000,99999).time()}" />如需要与粉丝绑定请在粉丝管理处找到粉丝编码填入此处
+				</td>
+			</tr>
+            <tr>
+				<th><label for="">头像</label></th>
+				<td>
+                <style>
+				.file{position:relative;}
+	.file input[type="file"]{position:absolute; top:0; left:0; width:2% !important; filter:alpha(opacity:0); opacity:0;}
+	.file button{width:100%; text-align:left;}
+
+				</style>
+					{php echo tpl_fans_form('avatar');}
+				</td>
+			</tr>
+			<tr>
+				<th><label for="">姓名</label></th>
+				<td>
+					<input type="text" name="realname" class="span3" value="{$item['profile']['realname']}" />
+				</td>
+			</tr>
+			<tr>
+				<th><label for="">手机号</label></th>
+				<td>
+					<input type="text" name="mobile" class="span3" value="{$item['profile']['mobile']}" />
+				</td>
+			</tr>
+            <tr>
+				<th><label for="">qq</label></th>
+				<td>
+					<input type="text" name="qq" class="span3" value="{$item['profile']['qq']}" />
+				</td>
+			</tr>
+             <tr>
+				<th><label for="">审核</label></th>
+				<td>
+                	<select name="allowed">
+                    <option value="1" {if $item['allowed']==1}selected{/if}>审核通过</option>
+                    <option value="0" {if $item['allowed']!=1}selected{/if}>自助申请未审核</option>
+                    </select>
+					
+				</td>
+			</tr>
+			<tr>
+				<th>参赛宣言</th>
+				<td>
+					<textarea class="span7 richtext-clone" name="content" cols="70">{$item['content']}</textarea>
+				</td>
+			</tr>
+		<tr>
+			<th></th>
+			<td>
+				<input name="submit" type="submit" value="提交" class="btn btn-primary span3">
+				<input type="hidden" name="token" value="{$_W['token']}" />
+			</td>
+		</tr>
+		</table>
+	</form>
+</div>
+{elseif $operation == 'display'}
+<div class="main">
+	<h4><a href="{php echo $this->createWebUrl('option', array('op' => 'post','rid'=>$_GPC['id']))}">添加参赛者</a></h4>
+	<div style="padding:15px;">
+		<table class="table table-hover">
+			<thead class="navbar-inner">
+				<tr>
+					<th style="width:30px;">参赛id</th>
+					<th style="min-width:150px;">姓名</th>
+					<th style="width:100px;">手机号</th>
+                    <th style="width:100px;">qq</th>
+					<th style="width:200px;">审核状态</th>
+                    <th style="width:200px;">票数</th>
+					<th>宣言</th>
+					<th style="text-align:right; min-width:60px;">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{loop $list $item}
+				<tr>
+					<td>{$item['id']}</td>
+					<td>{$fans[$item['from_user']]['realname']}</td>
+					<td>{$fans[$item['from_user']]['mobile']}</td>
+                    <td>{$fans[$item['from_user']]['qq']}</td>
+					<td>{if $item['allowed']==1}审核通过{else}自助申请未审核{/if}</td>
+                    <td>{$item['vote_num']}</td>
+					<td>{$item['content']}</td>
+					<td style="text-align:right;">
+						<a href="{php echo $this->createWebUrl('option', array('id' => $item['id'], 'op' => 'post'))}">编辑</a>
+					</td>
+				</tr>
+				{/loop}
+			</tbody>
+		</table>
+		{$pager}
+	</div>
+</div>
+
+{/if}
+{template 'common/footer'}
+  
+	

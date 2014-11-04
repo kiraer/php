@@ -1,0 +1,87 @@
+<input type="hidden" name="reply_id" value="{$reply['id']}" />
+<div class="alert alert-block alert-new">
+	<a class="close" data-dismiss="alert">×</a>
+	<h4 class="alert-heading">添加投票信息</h4>
+	<table>
+		<tbody>
+			{if !empty($reply['id'])}
+			<tr>
+				<th>菜单</th>
+				<td><a href="{php echo $this->createweburl('option', array('id' => $rid))}">管理投票选手</a>
+              <a href="{php echo $this->createweburl('result', array('id' => $rid))}">导出投票结果</a>
+              </td>
+			</tr>{/if}
+			<tr>
+				<th>标题</th>
+				<td>
+					<input type="text" id="" class="span7" placeholder="" name="title" value="{$reply['title']}">
+				</td>
+			</tr>
+            <tr>
+				<th>每人最多投票数</th>
+				<td>
+					<input type="text" id="" class="span7" placeholder="" name="vote_limit" value="{$reply['vote_limit']}">
+				</td>
+			</tr>        
+			<tr>
+				<th>图片</th>
+				<td>
+					<div id="" class="uneditable-input reply-edit-cover">
+						<div class="detail">
+							<span class="pull-right">大图片建议尺寸：700像素 * 300像素</span>
+							<input type="button" id="user-picture" fieldname="picture{$namesuffix}" class="btn btn-mini reply-edit-cover-upload" value="<i class='icon-upload-alt'></i> 上传" style="" />
+							<button type="button" class="btn btn-mini reply-news-edit-cover-remove" id="upload-delete" onclick="doDeleteItemImage(this, 'user-picture-value')" style="{if empty($reply['thumb'])} display:none;{/if}"><i class="icon-remove"></i> 删除</button>
+						</div>
+						{if !empty($reply['thumb'])}
+						<input type="hidden" name="picture-old" value="{$reply['thumb']}">
+						<div id="upload-file-view" class="upload-view">
+							<input type="hidden" id="user-picture-value" value="{$reply['thumb']}">
+							<img width="100" src="{$_W['attachurl']}{$reply['thumb']}">&nbsp;&nbsp;
+						</div>
+						{else}
+						<div id="upload-file-view"></div>
+						{/if}
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>回复简介</th>
+				<td>
+					<textarea style="height:150px;" name="description" class="span7" cols="60">{$reply['description']}</textarea>
+					<div class="help-block">用于图文显示的简介</div>
+				</td>
+			</tr>
+			<tr>
+				<th>投票页面标题</th>
+				<td>
+					<input type="text" id="" class="span7" placeholder="" name="vote_title" value="{$reply['vote_title']}">
+				</td>
+			</tr>
+             <tr>
+				<th>通告</th>
+				<td>
+					<textarea style="height:150px;" name="ad" class="span7 adeee" cols="60">{$reply['ad']}</textarea>
+					<div class="help-block">用于图文显示的简介</div>
+				</td>
+			</tr>
+			<tr>
+				<th>自助申请者审核</th>
+				<td>
+                  <label class="radio inline"><input type="radio" name="vote_allow" value="1" {if $reply['vote_allow'] == 1} checked="true" {/if}>是</label>&nbsp;&nbsp;
+				  <label class="radio inline"><input type="radio" name="vote_allow" value="0" {if $reply['vote_allow'] == 0} checked="true" {/if}>否</label>&nbsp;&nbsp;
+   			      
+				</td>
+			</tr>              
+          
+                                
+
+ 		</tbody>
+	</table>
+ </div>
+<script type="text/javascript">
+
+kindeditor($('.adeee'));
+
+kindeditor($('#rule'));
+kindeditorUploadBtn($('#user-picture'));
+</script>

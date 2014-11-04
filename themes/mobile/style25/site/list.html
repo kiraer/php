@@ -1,0 +1,28 @@
+{template 'header'}
+<link type="text/css" rel="stylesheet" href="themes/mobile/vw011/style.css">
+<div id="footer" class="black_gradient">
+            <a href="javascript:" onclick="window.history.go(-1)" class="back_button black_button">返回</a>
+            <div class="page_title">{$_W['account']['name']}</div>
+            <a href="mobile.php?act=channel&name=index&weid={$_W['weid']}" id="top" class="black_button">首页</a>
+            <div class="clear"></div>
+        </div>
+{php $result = site_article_search($cid);}        
+   	  <div class="content">
+        <h1>文章列表</h1>
+        <!--<span class="subtitle_descr">sd</span> -->
+        {loop $result['list'] $row}
+        <div class="post">
+            <div class="post_thumb">
+            {if $row['thumb']}<img src="{$_W['attachurl']}{$row['thumb']}" border="0" class="rounded-half" />{/if}
+            {php echo date('Y-m-d', $row['createtime'])}
+            </div>
+            <div class="post_content">
+            <h3><a href="{php echo create_url('mobile/channel', array('name' => 'detail', 'id' => $row['id'], 'weid' => $_W['weid']))}">{$row['title']}</a></h3>
+            <p>{php echo mb_substr($row['content'],0,20,'utf-8')}</p>
+            </div>
+        </div>
+        {/loop}
+        <h2>{$result['pager']}</h2>
+        <div class="clear"></div>
+		</div>
+{template 'footer'}

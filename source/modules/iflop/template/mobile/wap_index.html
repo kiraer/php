@@ -1,0 +1,112 @@
+<!--
+翻牌抽奖
+作者:迷失卍国度
+qq:15595755
+-->
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>翻牌抽奖</title>
+	<link rel="stylesheet" type="text/css" href="./source/modules/iflop/template/css/flop.css">
+	<style type="text/css">
+	.demo{width:100%; margin:40px 0 60px; text-align:center;}
+	.demo p{height:auto;text-align: left;}
+	#prize{margin:10px auto;padding-left: 5px;}
+	#prize li{float:left; width:32%; height:120px; line-height:120px; margin:1px; font-size:48px; text-align:center; color:#fff; cursor:pointer}
+    #footer {
+        display: block;
+        text-align: center;
+        font-size: 13px;
+        padding: 4px 0 4px;
+        background: #fff;
+        border-top: 1px solid #ddd;
+        color: #999;
+        margin:0px;
+        margin-top: 20px;
+        font-family: Arial, 'Microsoft YaHei';
+    }
+	#viewother,#repeat{height:40px; line-height:40px; text-align:center; font-size:16px; display:none}
+	</style>
+	<script type="text/javascript" src="./source/modules/iflop/template/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./source/modules/iflop/template/js/jquery-ui-1.7.2.custom.min.js"></script>
+	<script type="text/javascript" src="./source/modules/iflop/template/js/jquery.flip.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#prize li").each(function(){
+			var p = $(this);
+			var c = $(this).attr('class');
+			p.css("background-color",c);
+			p.click(function(){
+				$("#prize li").unbind('click');
+				$.ajax({
+					type:'GET',
+					url:"{php echo create_url('mobile/module', array('do' => 'lottery', 'name' => 'iflop', 'rid' => $rid, 'weid' => $_W['weid']))}",
+					dataType:'json',
+					cache:false,
+					success:function(json){
+						var prize = json.yes;
+						p.flip({
+							direction:'rl',
+							content:prize,
+							color:c,
+							onEnd: function(){
+								p.css({"font-size":"22px","line-height":"100px"});
+								p.attr("id","r");
+								$("#viewother").show();
+								$("#prize li").unbind('click').css("cursor","default").removeAttr("title");
+							}
+						});
+						$("#data").data("nolist",json.no);
+					}
+				});
+			});
+		});
+		$("#viewother").click(function(){
+		var mydata = $("#data").data("nolist"); //获取数据
+		var mydata2 = eval(mydata);
+
+		$("#prize li").not($('#r')[0]).each(function(index){
+			var pr = $(this);
+			pr.flip({
+				direction:'bt',
+				color:'lightgrey',
+				content:mydata2[index],
+				onEnd:function(){
+					pr.css({"font-size":"22px","line-height":"100px","color":"#333"});
+					$("#viewother").hide();
+					$("#repeat").show();
+				}
+			});
+		});
+		$("#data").removeData("nolist");
+	});
+		$("#repeat").click(function(){
+			window.location.reload();
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="main">
+		<h2 class="top_title">翻板抽奖</h2>
+		<div class="demo">
+			<p style="padding-left: 40px;">一等奖：佳能5d3<br>二等奖：美里达挑战者700<br>三等奖：音箱设备<br>四等奖：单反杯<br>五等奖：10Q币<br>点击数字方块，翻转即抽奖，快来试下你的手气吧。<br>这只是一个示例，不要问我要奖品哦...</p>
+            <ul id="prize">
+                <li class="red" title="点击抽奖">1</li>
+                <li class="green" title="点击抽奖">2</li>
+                <li class="blue" title="点击抽奖">3</li>
+                <li class="purple" title="点击抽奖">4</li>
+                <li class="olive" title="点击抽奖">5</li>
+                <li class="brown" title="点击抽奖">6</li>
+            </ul>
+            <div style="clear:both; margin-top:20px"><a href="javascript:void(0)" id="viewother" style="display: none;">【翻开其他】</a><a href="javascript:void(0);" id="repeat">【再来一次】</a></div>
+			<div id="data"></div>
+		</div>
+        <div id="footer">
+            <span>©2014 微SRC</span>&nbsp;
+            <span>联系QQ:15595755</span>
+        </div>
+	</div>
+</body>
+</html>

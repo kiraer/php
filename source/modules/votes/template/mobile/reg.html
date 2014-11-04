@@ -1,0 +1,50 @@
+{template 'header'}
+<link type="text/css" rel="stylesheet" href="./source/modules/votes/template/sharpdaily/css/lanrenzhijia.css">
+<style>
+body{background:#F9F9F9;}
+.cardsn{position:absolute; color:{$card['color']['number']}; right:20px; bottom:10px; text-shadow:0 1px 0 rgba(255, 255, 255, 0.5); font-size:16px;}
+.cardtitle{position:absolute; right:20px; top:10px; color:{$card['color']['title']}; font-size:16px;}
+.cardlogo{position:absolute; top:10px; left:20px;}
+.f_left{float:left; line-height:30px;font-size:14px;width:70px;}
+.form .input{height:30px;width:180px;}
+.form .input-container,.form .textarea{width:180px; text-align:left;}
+#footer{display:none;}
+</style>
+
+<div id="bg-container">
+<form id="form-1" class="form" method="post" action="" enctype="multipart/form-data">
+  	<h5>报名表</h5>
+    <div class="form-row">
+	  <div class="f_left">编号：</div>
+	    <div class="input-container"><input type="text" class="input req-min" minlength="3" maxlength="40" value="{if !empty($item['id'])}TMH{/if}{$item['id']}" disabled="disabled"/><input type="hidden" value="{$item['id']}" name="id"></div>
+	</div>
+  	<div class="form-row">
+	  <div class="f_left">头像</div>
+	    <div class="input-container">{if !empty($item['profile']['avatar'])}<img src="{$item['profile']['avatar']}">{/if}{php echo tpl_fans_form('avatar', $item['profile']['avatar']);}</div>
+	</div>
+    
+	<div class="form-row">
+	  <div class="f_left">真实姓名</div>
+	    <div class="input-container"><input name="realname" type="text" class="input req-min" minlength="3" maxlength="40" value="{$item['profile']['realname']}" {if $item['allowed']=='1'}disabled="disabled"{/if}/></div>
+	</div>
+	<div class="form-row">
+      <div class="f_left">电话</div>
+	    <div class="input-container"><input name="mobile" type="text" class="input req-both" maxlength="40" style="margin-left: 0px;" rel="phone" value="{$item['profile']['mobile']}" {if $item['allowed']=='1'}disabled="disabled"{/if}/></div>
+	</div>
+	<div class="form-row">
+	    <div class="f_left">qq</div>
+	    <div class="input-container"><input name="qq" type="text" class="input req-email" maxlength="50" value="{$item['profile']['qq']}" {if $item['allowed']=='1'}disabled="disabled"{/if}/></div>
+	</div>
+	<div class="form-row">
+	    <div class="f_left">宣言</div>
+	    <div class="input-container"><textarea name="content" cols="" rows="" class="textarea req-string">{$item['content']}</textarea></div>
+	</div>
+	
+	<input type="submit" name="submit" data-theme="a" data-icon="check" value="提交" class="btn btn-default"/>
+    <input type="hidden" name="token" value="{$_W['token']}" />
+	<div id="errorDiv1" class="error-div"></div>
+
+</form>
+
+</div>
+{template 'footer'}

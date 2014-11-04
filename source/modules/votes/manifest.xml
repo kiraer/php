@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.51">
+	<application setting="false">
+		<name><![CDATA[微投票改进版]]></name>
+		<identifie><![CDATA[votes]]></identifie>
+		<version><![CDATA[1.0]]></version>
+		<type><![CDATA[services]]></type>
+		<ability><![CDATA[微投票改进版]]></ability>
+		<description><![CDATA[微投票改进版]]></description>
+		<author><![CDATA[Libi]]></author>
+		<url><![CDATA[]]></url>
+	</application>
+	<platform>
+		<subscribes>
+			<message type="text" />
+			<message type="image" />
+		</subscribes>
+		<handles>
+			<message type="image" />
+			<message type="text" />
+		</handles>
+		<rule embed="true" />
+	</platform>
+	<bindings>
+</bindings>
+	<install><![CDATA[CREATE TABLE IF NOT EXISTS `ims_vote_fans` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from_user` varchar(50) NOT NULL,
+  `rid` int(11) NOT NULL,
+  `oid` int(11) NOT NULL,
+  `vote_num` int(11) NOT NULL,
+  `vote_time` int(10) NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_vote_option` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `rid` int(10) unsigned NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `thumb` varchar(60) NOT NULL,
+  `content` text NOT NULL,
+  `vote_num` int(11) NOT NULL,
+  `from_user` text,
+  `allowed` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_vote_reply` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `rid` int(10) unsigned NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `thumb` varchar(60) NOT NULL,
+  `vote_title` varchar(50) NOT NULL,
+  `vote_allow` tinyint(4) NOT NULL,
+  `vote_limit` tinyint(4) NOT NULL,
+  `ad` text NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;]]></install>
+	<uninstall><![CDATA[]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

@@ -1,0 +1,29 @@
+{template 'head'}
+<!--        main Content-->
+<div class="ContentWrapper" id="GallerySContentWrapper">
+    <span class="BigComments"></span><h2>{$title}</h2>
+    <p class="BlogInfo">CATEGORY</p>
+    <ul class="ImageGalleryList ImageGalleryListSmaller">
+        {php $bg = '#66c574';}
+        {php $num = 1;}
+        {data module="site" func="site_category" parentid="$cid"}
+        {php if($num == 2) $bg = '#88c8b7';}
+        {php if($num == 3) $bg = '#facc6c';}
+        {php if($num == 4) $bg = '#75bcd0';}
+        {php if($num == 5) $bg = '#dc7a93';}
+        {php if($num == 6) $bg = '#75bcd0';}
+        <li><a href="{php echo $this->createMobileUrl('list', array('name' => 'site', 'cid' => $row['id'], 'weid' => $_W['weid']))}" title="{$row['name']}" class="TouchGallery">
+                <span style="{$nav['css']['name']} background:{$bg};">{$row['name']}</span>
+            </a>
+        </li>
+        {php $num++;}
+        {php if($num >= 7) $num = 1;}
+        {/data}
+    </ul>
+    <p></p>
+</div>
+<!--            footer section-->
+{if empty($footer_off)}<div id="footer">{if $_W['account']['siteinfo']['footer']}{$_W['account']['siteinfo']['footer']}{else}&copy;{if empty($_W['account']['name'])}微动力团队{else}{$_W['account']['name']}{/if}&nbsp;&nbsp;{/if}{$_W['setting']['copyright']['statcode']}</div>{/if}
+{template 'footer'}
+</body>
+</html>

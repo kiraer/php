@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{if $title}{$title}{else}{if !empty($_W['account']['name'])}{$_W['account']['name']}{/if}{/if}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=480" />
+        <link rel="stylesheet" href="themes/mobile/style123/css/reset.css" />
+        <link rel="stylesheet" href="themes/mobile/style123/css/mainCssRed.css" />
+        <script type="text/javascript" src="themes/mobile/style123/js/klass.min.js"></script>
+        <script type="text/javascript" src="themes/mobile/style123/js/jquery.min.js"></script>
+        <script type="text/javascript" src="themes/mobile/style123/js/flexslider.js"></script>
+        <script type="text/javascript" src="themes/mobile/style123/js/MainJS.js"></script>
+        <!--        Hides URL bar on iPhone-->
+        <script type="application/x-javascript">
+            if (navigator.userAgent.indexOf('iPhone') != -1) {
+            addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+            }, false);
+            }
+
+            function hideURLbar() {
+            window.scrollTo(0, 1);
+            }
+
+        </script>
+</head>
+<body>
+{php $row = $detail;}
+    	<!--            headlineSection-->
+<div id="Headline">
+    <h1><img src="{$_W['styles']['indexlogo']}"></h1>
+</div> 
+<!--            Main Nav Section-->
+<div id="MainNav">
+    <div class="flexslider-nav"> 
+        <ul class="slides">
+			<li>
+             {php 
+$cussql='select * from '.tablename('site_nav').' where  weid = '.$_W['weid'].' AND  status = 1 ORDER BY displayorder DESC';}
+{php $nav_list = pdo_fetchall($cussql); }
+                {loop $nav_list $nav} 
+					<a href="{$nav['url']}">
+					<p>{$nav['name']}</p><p class="NavItemInfo">{$nav['description']}</p>
+					</a>
+				{/loop} 
+			</li>
+        </ul>
+    </div>
+</div>
+<ul id="ShowingRibbons">
+    <li id="RBNShowMenu"><img src="themes/mobile/style123/images/RED/dropdown_show.png" alt="Show Menu" /></li>
+    <li><a href="{php echo create_url('mobile/channel', array('name' => 'index', 'weid' => $_W['weid']))}"><img src="themes/mobile/style123/images/RED/dropdown_index.png" alt="Back to homepage" /></a></li>
+</ul>
+        <!--        main Content-->
+        <div class="ContentWrapper" id="GallerySContentWrapper">
+            <!--            main description-->
+            <!--            Gallery-->
+			<span class="BigComments"></span>
+                    <h2>{$row['title']}</h2>
+                    <p class="BlogInfo">POSTTIME:{php echo date('Y-m-d H:i:s', $row['createtime'])} <a href="#">AUTHOR:{$row['author']}</a></p>
+                    {$row['content']}
+			<span class="BigComments"></span>
+                    <h2>作品描述</h2>
+                    <p class="BlogInfo">PHOTO INFORMATION</p>
+                    <p class="BlogDescriptionLast">{$row['description']}</p>
+        </div>
+        <!--            footer section-->
+<div id="footer">
+    <span>
+        <a href="{$_W['styles']['weibo']}" target="_blank"><img src="themes/mobile/style123/images/socialIcons/zixun.png" /></a>
+        <a href="tel:{$_W['styles']['tel']}"><img src="themes/mobile/style123/images/socialIcons/tel.png" /></a>
+        <a href="{$_W['styles']['links']}"><img src="themes/mobile/style123/images/socialIcons/down.png" /></a>
+    </span>
+</div>
+</body>
+</html>
